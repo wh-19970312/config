@@ -1,0 +1,47 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=UTF-8&useSSl=false&serverTimezone=UTC&tinyInt1isBit=false&useSSL=false
+    #    数据库连接池的设置
+    hikari:
+      allow-pool-suspension: true
+      validation-timeout: 50000
+      #设置连接池的最大连接数
+      maximum-pool-size: 100
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mappers/*Mapper.xml
+  type-aliases-package: com.eshore.entity
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+  #    这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      capital-mode: false
+      logic-delete-field: flag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-underline: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+
