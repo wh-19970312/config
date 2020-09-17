@@ -1,2 +1,2 @@
-config
-  this is test file
+config:
+  this: is test file
